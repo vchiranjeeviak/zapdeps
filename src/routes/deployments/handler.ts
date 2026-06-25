@@ -1,10 +1,11 @@
 import type { Context } from 'hono'
 import { deployments } from '../../seed.js'
+import type { Deployment, DeploymentStatus } from '../../types/deployment.js'
 
-const VALID_STATUSES = ['running', 'success', 'failed']
+const VALID_STATUSES: DeploymentStatus[] = ['running', 'success', 'failed']
 
 export function listDeployments(c: Context) {
-  let data: typeof deployments
+  let data: Deployment[]
 
   try {
     data = deployments
@@ -16,7 +17,7 @@ export function listDeployments(c: Context) {
     return c.json({ error: 'Deployments data is corrupted' }, 500)
   }
 
-  const status = c.req.query('status')
+  const status = c.req.query('status') as DeploymentStatus | undefined
   const service = c.req.query('service')
 
   if (status && !VALID_STATUSES.includes(status)) {
@@ -41,7 +42,7 @@ export function getDeployment(c: Context) {
     return c.json({ error: 'Deployment ID is required' }, 400)
   }
 
-  let data: typeof deployments
+  let data: Deployment[]
 
   try {
     data = deployments

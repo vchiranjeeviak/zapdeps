@@ -1,4 +1,6 @@
-export const deployments = [
+import type { Deployment } from './types/deployment.js'
+
+export const deployments: Deployment[] = [
   { id: 'deploy_001', service: 'billing-api',       status: 'failed',    duration: 320,  timestamp: '2025-04-28T14:32:00Z', commit_sha: 'abc123' },
   { id: 'deploy_002', service: 'auth-service',      status: 'success',   duration: 145,  timestamp: '2025-04-29T09:10:00Z', commit_sha: 'def456' },
   { id: 'deploy_003', service: 'user-service',      status: 'success',   duration: 210,  timestamp: '2025-04-29T11:45:00Z', commit_sha: 'ghi789' },
