@@ -4,5 +4,5 @@ import app from './app.js'
 const PORT = Number(process.env.PORT) || 3000
 
 serve({ fetch: app.fetch, port: PORT }, () => {
-  console.log(`Server running on http://localhost:${PORT}`)
+  console.log(`[startup] Server listening on http://localhost:${PORT}`)
 })
